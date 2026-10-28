@@ -204,7 +204,7 @@ function Home() {
           <article className="final-card" data-testid="card-birthday-message">
             <div className="reveal-robot" aria-hidden="true"><Robot /></div>
             <p className="card-kicker">A note, made with love</p>
-            <p className="card-message" data-testid="text-final-birthday-message">{'Happy Birthdayyyy\n\nI hope you have the best birthday ever and NO GOING IN "the lab" EVER ON YOUR BIRTHDAY EVER.'}</p>
+            <p className="card-message" data-testid="text-final-birthday-message">{'Happy Birthdayyyy\n\nI hope you have the best birthday ever and NO GOING IN "the lab" EVER ON YOUR BIRTHDAY EVER.\n\nbtw this is the only ai thing your getting from me til next year ✌️'}</p>
           </article>
         </section>
       )}
