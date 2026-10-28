@@ -1079,3 +1079,130 @@ body { color: #e8f2ff; }
   text-align: center;
   text-wrap: pretty;
 }
+
+:root {
+  --birthday-font-display: ui-rounded, "Arial Rounded MT Bold", "Trebuchet MS", system-ui, sans-serif;
+  --birthday-font-body: "Trebuchet MS", "Avenir Next", "Segoe UI", sans-serif;
+}
+
+html,
+body {
+  background: #050914;
+  color: #f5f8ff;
+}
+
+body {
+  font-family: var(--birthday-font-body);
+}
+
+.birthday-shell {
+  color: #f5f8ff;
+  background:
+    radial-gradient(ellipse at 15% 16%, rgba(33, 96, 202, .23), transparent 34%),
+    radial-gradient(ellipse at 84% 79%, rgba(18, 166, 212, .14), transparent 36%),
+    #050914;
+}
+
+.scene-cover,
+.screen-card {
+  border-color: rgba(132, 184, 255, .48);
+  background: rgba(8, 18, 38, .96);
+  box-shadow: 0 24px 70px rgba(0, 3, 14, .55), 0 0 42px rgba(36, 119, 255, .12), inset 0 1px rgba(211, 231, 255, .08);
+}
+
+.cover-title,
+.puzzle-title {
+  color: #f5f8ff;
+  font-family: var(--birthday-font-display);
+  letter-spacing: -.035em;
+  text-shadow: 0 0 26px rgba(89, 168, 255, .16);
+}
+
+.cover-title span { color: #8ceaff; }
+.eyebrow,
+.card-kicker { color: #8ceaff; }
+
+.cover-subtitle,
+.puzzle-intro {
+  color: #d4e2f5;
+  font-family: var(--birthday-font-body);
+}
+
+.message-text,
+.hint,
+.feedback,
+.card-message,
+.riddle-prompt {
+  font-family: var(--birthday-font-body);
+}
+
+.primary-button {
+  color: #06142b;
+  background: #75b5ff;
+  font-family: var(--birthday-font-display);
+  letter-spacing: .06em;
+  box-shadow: 0 5px 0 #285fae, 0 0 20px rgba(71, 155, 255, .28);
+}
+
+.primary-button:hover {
+  box-shadow: 0 7px 0 #285fae, 0 0 28px rgba(71, 185, 255, .48);
+}
+
+.primary-button:active {
+  box-shadow: 0 2px 0 #285fae, 0 0 14px rgba(71, 185, 255, .3);
+}
+
+.answer-input {
+  border-color: #6686b5;
+  color: #f5f8ff;
+  background: rgba(4, 12, 27, .86);
+}
+
+.answer-input::placeholder { color: #c0cee3; }
+.answer-input:focus { border-color: #8ceaff; }
+
+.hint {
+  border-left-color: #8ceaff;
+  color: #eff6ff;
+  background: rgba(23, 51, 86, .78);
+}
+
+.feedback { color: #e3edfb; }
+.feedback.success { color: #c7f3ff; }
+.reaction { color: #c7f3ff; }
+
+.feedback-mark {
+  display: inline-grid;
+  width: 1.4em;
+  aspect-ratio: 1;
+  place-items: center;
+  margin-right: .55em;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: .85em;
+  font-weight: 900;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.final-card {
+  border-color: rgba(132, 184, 255, .58);
+  background: linear-gradient(145deg, #102344, #0b1931 65%, #10213c);
+  box-shadow: 0 15px 45px rgba(0, 5, 24, .58), 0 0 42px rgba(41, 131, 255, .2), inset 0 1px rgba(207, 232, 255, .14);
+}
+
+.card-message { color: #f5f8ff; }
+.system-caption { color: #d1e0f6; }
+.system-status { color: #8ceaff; }
+
+.confetti-bit:nth-child(5n + 1) { background-color: #5da1ff !important; }
+.confetti-bit:nth-child(5n + 2) { background-color: #74e5ff !important; }
+.confetti-bit:nth-child(5n + 3) { background-color: #a9cfff !important; }
+.confetti-bit:nth-child(5n + 4) { background-color: #c7dfff !important; }
+.confetti-bit:nth-child(5n) { background-color: #f1f8ff !important; }
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #9aeeff;
+  outline-offset: 4px;
+}

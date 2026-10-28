@@ -92,8 +92,8 @@ function Home() {
       setFeedback(current.reaction);
     } else {
       setFeedback(puzzleIndex === 0
-        ? 'Close! Your birthday word is hiding in there. Give those letters another look.'
-        : 'Not quite, but you’re close. Take another look at the riddle.');
+        ? 'Not quite yet—those birthday letters are being stubborn. Try again.'
+        : 'Not quite yet, but you’re close. Take another look at the riddle.');
       setShowHint(true);
     }
   };
@@ -174,6 +174,7 @@ function Home() {
             </button>
           </form>
           <p id="puzzle-feedback" className={`feedback ${solved ? 'success' : ''}`} aria-live="polite" data-testid="status-puzzle-feedback">
+            {feedback && <span className="feedback-mark" aria-hidden="true">{solved ? '✓' : '↻'}</span>}
             {feedback}{solved && <span className="reaction" data-testid="text-robot-reaction"> NICE WORK.</span>}
           </p>
           {showHint && <p id="puzzle-hint" className="hint" data-testid="text-puzzle-hint">{puzzles[puzzleIndex].hint}</p>}
@@ -221,7 +222,7 @@ function StepMark({ current, count }: { current: number; count: number }) {
 }
 
 function Confetti() {
-  const colors = ['#d26750', '#d8b660', '#6b9587', '#9e715c', '#8a9c72'];
+  const colors = ['#5da1ff', '#74e5ff', '#a9cfff', '#c7dfff', '#f1f8ff'];
   return (
     <div aria-hidden="true" data-testid="animation-confetti">
       {Array.from({ length: 42 }, (_, index) => (
