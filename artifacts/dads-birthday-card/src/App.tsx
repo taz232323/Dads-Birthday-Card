@@ -20,6 +20,7 @@ function Home() {
   const [answer, setAnswer] = useState('');
   const [feedback, setFeedback] = useState('');
   const [solved, setSolved] = useState(false);
+  const [showHint, setShowHint] = useState(false);
   const [glitch, setGlitch] = useState(false);
 
   const introMessages = [
@@ -36,12 +37,12 @@ function Home() {
       accepted: (value: string) => value.trim().toUpperCase() === 'BIRTHDAY',
     },
     {
-      title: 'SECRET MESSAGE',
-      subtitle: 'I encrypted a tiny greeting. It is extremely secure, by robot standards.',
-      display: 'IBQQZ CJSUIEBZ',
-      hint: 'Hint: each coded letter is one letter ahead in the alphabet.',
-      reaction: 'DECRYPTION COMPLETE. PLEASE DO NOT TELL THE OTHER ROBOTS.',
-      accepted: (value: string) => value.replace(/[^a-z]/gi, '').toUpperCase() === 'HAPPYBIRTHDAY',
+      title: 'BIRTHDAY RIDDLE',
+      subtitle: 'My riddle module is online. Probably.',
+      display: 'I have a face and two hands, but no eyes or fingers. What am I?',
+      hint: 'Hint: you might hang me on a wall to check the time.',
+      reaction: 'RIDDLE SOLVED. YOUR HUMAN BRAIN IS... MOST IMPRESSIVE.',
+      accepted: (value: string) => ['clock', 'watch', 'aclock', 'awatch'].includes(value.toLowerCase().replace(/[^a-z]/g, '')),
     },
   ];
 
@@ -69,6 +70,7 @@ function Home() {
     setAnswer('');
     setFeedback('');
     setSolved(false);
+    setShowHint(false);
     setScreen('puzzle');
   };
 
@@ -76,6 +78,7 @@ function Home() {
     setAnswer('');
     setFeedback('');
     setSolved(false);
+    setShowHint(false);
     if (puzzleIndex === 0) setPuzzleIndex(1);
     else setScreen('final-glitch');
   };
@@ -90,18 +93,8 @@ function Home() {
     } else {
       setFeedback(puzzleIndex === 0
         ? 'Close! Your birthday word is hiding in there. Give those letters another look.'
-        : 'Not quite, but the message is cheering for you. Try shifting each letter back one.');
-    }
-  };
-
-  const skipPuzzle = () => {
-    if (puzzleIndex === 0) {
-      setPuzzleIndex(1);
-      setAnswer('');
-      setFeedback('');
-      setSolved(false);
-    } else {
-      setScreen('final-glitch');
+        : 'Not quite, but you’re close. Take another look at the riddle.');
+      setShowHint(true);
     }
   };
 
@@ -153,8 +146,13 @@ function Home() {
           <p className="eyebrow">A very tiny test of human intelligence</p>
           <h2 id="puzzle-title" className="puzzle-title" data-testid="heading-puzzle-title">{puzzles[puzzleIndex].title}</h2>
           <p className="puzzle-intro">{puzzles[puzzleIndex].subtitle}</p>
-          <div className="scramble" aria-label={`Puzzle letters: ${puzzles[puzzleIndex].display}`} data-testid="text-puzzle-letters">{puzzles[puzzleIndex].display}</div>
-          <p className="hint" data-testid="text-puzzle-hint">{puzzles[puzzleIndex].hint}</p>
+          <div
+            className={puzzleIndex === 0 ? 'scramble' : 'riddle-prompt'}
+            aria-label={`Puzzle: ${puzzles[puzzleIndex].display}`}
+            data-testid="text-puzzle-prompt"
+          >
+            {puzzles[puzzleIndex].display}
+          </div>
           <form className="answer-form" onSubmit={submitAnswer} data-testid="form-puzzle-answer">
             <label className="sr-only" htmlFor="puzzle-answer">Your answer</label>
             <input
@@ -168,7 +166,7 @@ function Home() {
                 if (feedback && !solved) setFeedback('');
               }}
               placeholder="Type your answer"
-              aria-describedby="puzzle-feedback"
+              aria-describedby={showHint ? 'puzzle-feedback puzzle-hint' : 'puzzle-feedback'}
               data-testid="input-puzzle-answer"
             />
             <button className="primary-button" type="submit" disabled={!answer.trim() || solved} data-testid="button-check-answer">
@@ -178,11 +176,11 @@ function Home() {
           <p id="puzzle-feedback" className={`feedback ${solved ? 'success' : ''}`} aria-live="polite" data-testid="status-puzzle-feedback">
             {feedback}{solved && <span className="reaction" data-testid="text-robot-reaction"> NICE WORK.</span>}
           </p>
+          {showHint && <p id="puzzle-hint" className="hint" data-testid="text-puzzle-hint">{puzzles[puzzleIndex].hint}</p>}
           <div className="puzzle-footer">
             {solved
               ? <button className="primary-button" type="button" onClick={nextPuzzle} data-testid="button-continue-puzzle">CONTINUE <span aria-hidden="true">→</span></button>
               : <span className="eyebrow" style={{ margin: 0 }}>No pressure. It’s a birthday, not an exam.</span>}
-            {!solved && <button className="text-button" type="button" onClick={skipPuzzle} data-testid="button-skip-puzzle">Skip this one</button>}
           </div>
         </section>
       )}
