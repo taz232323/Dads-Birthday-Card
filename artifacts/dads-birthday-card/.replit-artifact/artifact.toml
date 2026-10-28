@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Dad’s Birthday Card"
+description = "A funny, heartfelt interactive birthday card for Dad, featuring a glitchy AI robot, two optional tiny puzzles, and a celebratory message reveal."
+version = "1.0.0"
+id = "artifacts/dads-birthday-card"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21421
+
+[services.development]
+run = "pnpm --filter @workspace/dads-birthday-card run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/dads-birthday-card", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/dads-birthday-card/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21421"
+BASE_PATH = "/"
