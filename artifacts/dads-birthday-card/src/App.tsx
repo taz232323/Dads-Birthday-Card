@@ -204,10 +204,8 @@ function Home() {
           <article className="final-card" data-testid="card-birthday-message">
             <div className="reveal-robot" aria-hidden="true"><Robot /></div>
             <p className="card-kicker">A note, made with love</p>
-            <p className="card-message" data-testid="text-final-birthday-message">{'Happy Birthday, Dad! ❤️\n\nThank you for all the laughs, the terrible jokes, and for always making life fun. I hope you have the best birthday ever. Love you!'}</p>
-            <p className="card-signature" data-testid="text-cheeky-signature">This is the only AI thing you’re getting btw ur welcomeeee</p>
+            <p className="card-message" data-testid="text-final-birthday-message">{'Happy Birthdayyyy\n\nI hope you have the best birthday ever and NO GOING IN "the lab" EVER ON YOUR BIRTHDAY EVER.'}</p>
           </article>
-          <p className="footer-note">Delivered with affection. Glitches not included.</p>
         </section>
       )}
     </main>
